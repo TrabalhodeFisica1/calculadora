@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+<head>
+    <title>Calculadora de Lançamento de Projétil</title>
+    <style>
+        /* 
+        --- FACULDADE FUCAPI - PROJETO DE FÍSICA 23-11-2023
+        --- APRESENTADO EM: XI ENCONTRO REGIONAL DE ENGENHARIA (ENCOENG)
+        --- TURMA: ENGENHARIA DE COMPUTAÇÃO - 2º PERÍODO
+        --- DESENVOLVEDORES:
+        -> JAVASCRIPT - HTML - CSS: @arlesonjunior 
+        -> JAVASCRIPT: @aileraron 
+        -> JAVASCRIPT: @ryansantos 
+        -> JAVASCRIPT: @luizfernando 
+        --- Copyright©2023 ---
+        */
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            background: #fff;
+            font-family: Arial, sans-serif;
+        }
+        #plano-cartesiano-img{
+            border-radius: 10px;
+            background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHT9gGrFsLZkWF-eZK5Syo9Pxbpmxx1zMPf-a4t0HwgQD5lEJZABFU2Z8XIyFOcMzQ4CHxN730R3YLHDP6DQVfbgwhXFmgRrjTEfQkZeI2iRWvZGK0nF9-P_Yhj6HHrmIiQCJXHiTdNMw1TMIaVGWqElLSlnaTTItWEFOljFEKs0E97MjbskO62lgH/s1600/plano-cartesiano%20final.png");
+            width: 890px;
+            height: 520px;
+        }
+        #trajectoryCanvas {
+            width: 740px;
+            height: 440px;
+            float: right;
+            margin-right: 70px;
+            margin-top: 40px; 
+            border: solid 0px #000;
+        }
+        .t1{
+            color:#141c3a; 
+            font-family: 'Comfortaa', sans-serif;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow:1px 1px #222;
+        }
+        .t2{
+            width: 800px;
+            color:#000; 
+            font-family: 'verdana', sans-serif;
+            font-size: 18px;
+            text-align: justify;
+            
+        } 
+        .t3{
+            color:#fff; 
+            font-family: 'Comfortaa', sans-serif;
+            font-size: 25px;
+            font-weight: bold;
+            text-shadow:1px 1px #ccc;
+        }
+        .t4{
+            width: 800px;
+            color:#fff; 
+            font-family: 'verdana', sans-serif;
+            font-size: 17px;
+            text-align: justify;
+            
+        } 
+        #barral1{
+            background:#6e07f3 repeat-x;
+            width:100%;
+            height:400px;
+            margin-top:0px;
+            left:0;right:0;
+            z-index:9999;
+        }
+        #box-calculadora{
+            background:#fff;
+            border-radius: 20px;
+            border: 2px #e6ecf6 solid;
+            margin-top: -130px;
+            width:1000px;
+            height:600px;
+        }
+        #box-esquerda{
+            background:#141c3a;
+            border-radius: 20px 0px 0px 20px;
+            color: #fff;
+            border: 2px #e6ecf6 solid;
+            margin-top: -450px;
+            margin-left: 100px;
+            float: left;
+            width:354px;
+            height:400px;
+            padding: 15px;
+        }
+        #box-direita{
+            background:#141c3a;
+            border-radius: 0px 20px 20px 0px;
+            border: 2px #e6ecf6 solid;
+            margin-top: -450px;
+            margin-right: 99px;
+            float: right;
+            width:354px;
+            height:400px;
+            padding: 15px;
+            color:#fff;
+        }
+        #box-escrever{
+            background:#fff;
+            border-radius: 15px;
+            border: 2px #e6ecf6 solid;
+            width:320px;
+            height:35px;
+        }
+        .botao-calcular {
+            padding: 10px 20px;
+            font-size: 18px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border: 2px solid #5be9b9;
+            color: #fff;
+            background: #141c3a;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        #box-resultados{ 
+            font-size: 20px;
+            color: #fff;
+        }
+        #lista-valores{
+            font-size: 22px;
+            padding: 5px;
+            font-family: "Arial";
+            color: #fff;
+        }
+        #lista-valores ul{
+            list-style-type: none;
+        }
+        #lista-valores2{
+            font-size: 22px;
+            padding: 5px;
+            font-family: "Arial";
+            color: #fff;
+        }
+        #box-perfil{
+            background: #6e07f3;
+            border: 4px solid #141c3a;
+            border-radius: 20px;
+            width: 850px;
+            height: 200px;
+            padding: 5px;
+        }
+        .valores-eixo-y{
+            font-size: 19px;
+            font-family: "arial";
+            color: #000;
+            width: 50px;
+            height: 250px;
+            float:left;
+            margin-left: 30px;
+            margin-top: 68px;
+
+        }
+        .valores-eixo-y ul{
+            padding: 5px;
+            list-style-type: none;
+        }
+        .valores-eixo-x{
+            font-size: 19px;
+            font-family: "arial";
+            color: #000;
+            width: 900px;
+            height: 50px;
+            float: right;
+            margin-right: 37px;
+            padding-left: 100px;
+        }
+        .valores-eixo-x li{
+            padding: 10px;
+            list-style-type: none;
+            word-spacing: 4px;
+        }
+    </style>
+</head>
+<body>
+     <!-- CABEÇALHO início -->
+  <header>
+  </header>
+  <!-- CABEÇALHO fim -->
+  <br><br>
+  <!-- MEIO Início -->
+  <center><div class="t1">Lançamento de Projéteis - Uma Análise Computacional</div></center>
+  <br>
+  <center><div class="t2">O objetivo principal deste projeto é realizar uma análise computacional do lançamento de projéteis, aplicando conceitos fundamentais da disciplina de Física I. Ele visa aprimorar a compreensão dos conceitos teóricos por meio de uma abordagem prática e visual. O projeto oferece uma ferramenta interativa e educativa para explorar e compreender os princípios do lançamento de projéteis. Antes de apresentarmos a ferramenta, compartilhamos um breve overview do desenvolvimento do projeto e dos desafios enfrentados.</div></center>
+         <br>
+
+         <div id="barral1">
+            <br><br><br>
+            <center><div class="t3">O DESENVOLVIMENTO</div></center>
+            <br>
+            <center><div class="t4">Os colaboradores encarregados da estrutura e implementação do projeto em programação conduziram uma consulta com o intuito de identificar a abordagem mais apropriada para abordar o desafio proposto pelo professor. Após uma análise detalhada, chegaram a um consenso de que a componente de cálculo deveria ser implementada utilizando JavaScript, enquanto a parte relacionada à interface web e modelagem seria desenvolvida por meio de HTML e CSS.</div></center>
+            <br>
+            <!-- <center> <div id="box-perfil"></div></center> -->
+        </div>
+        
+         <!-- CALCULADORA INICIO -->
+         <center><div id="box-calculadora">
+            <br>
+            <div id="plano-cartesiano-img">
+            <canvas id="trajectoryCanvas"></canvas>
+            <div class="valores-eixo-y">
+                <ul> 
+                    <li>450</li>
+                    <br>
+                    <li>400</li>
+                    <br>
+                    <li>350</li>
+                    <br>
+                    <li>300</li>
+                    <br>
+                    <li>250</li>
+                    <br>
+                    <li>200</li>
+                    <br>
+                    <li>150</li>
+                    <br>
+                    <li>100</li>
+                    <br>
+                    <li>50</li>
+                </ul>
+            </div>
+            <div class="valores-eixo-x">
+                <ul> 
+                    <li>50 100 150 200 250 300 350 400 450 500 550 600 650 700 750 800 850</li>
+                </ul>
+            </div>
+        </div>
+    </center>
+         <!-- BOX-ESQUERDO -->
+         <div id="box-esquerda">
+            <label for="velocity" style="font-size: 17px">Velocidade Inicial (m/s):</label>
+            <br>
+            <div id="box-escrever"><input type="number" id="velocity" value="10" style="border: none; width: 300px; height: 32px;margin-left: 7px;"></div>
+            <br>
+            <label for="angle" style="font-size: 17px">Ângulo de Lançamento (graus):</label>
+            <div id="box-escrever"><input type="number" id="angle" value="45" style="border: none; width: 300px; height: 32px;margin-left: 7px;"></div>
+            <br>
+            <div class="botao-calcular" onclick="calculateTrajectory()">Calcular</div>
+            <br>
+            <div id="box-resultado">
+                <h2>Resultados:</h2>
+                <br>
+                <p>Alcance: <span id="range">0</span> metros</p>
+                <p>Altura Máxima: <span id="maxHeight">0</span> metros</p>
+                <p>Comprimento da Trajetória: <span id="trajectoryLength">0</span> metros</p>
+            </div>
+         </div>
+         <div id="box-direita">
+            <h2>Valores Instantâneos:</h2>
+            <div id="lista-valores2"><p id="values">Vx: 0 m/s<br>Vy: 0 m/s<br>G: -9.8 m/s²<br>T: 0 s<br>Y: 0 m<br>X: 0 m</p></div>
+         </div>
+<br>
+    <script>
+      function calculateTrajectory() {
+    const velocity = parseFloat(document.getElementById("velocity").value); // coloca a velocidade
+    const angle = parseFloat(document.getElementById("angle").value); // coloca o angulo
+    const g = 9.8;
+
+    const radians = (angle * Math.PI) / 180;
+    const vy0 = velocity * Math.sin(radians);
+    const vx0 = velocity * Math.cos(radians);
+
+    const tTotal = (2 * vy0) / g;
+
+    const canvas = document.getElementById("trajectoryCanvas"); // trajetoria 
+    const ctx = canvas.getContext("2d"); 
+    ctx.imageSmoothingEnabled = true;
+    ctx.lineCap = "round"; // suavilizar as curvas
+    ctx.lineJoin = "round"; // suavilizar as curvas
+    ctx.lineWidth = 2; // tamanho da linha do desenho no gráfico
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const scaleX = canvas.width / 900; // escala do eixo x
+    const scaleY = canvas.height / 500; // escala do eixo y
+
+    ctx.beginPath();
+    ctx.moveTo(0, canvas.height);
+    ctx.lineTo(0, canvas.height);
+
+    // EIXO X
+    for (let i = 50; i <= 850; i += 50) { // marcações que aparecem no eixo x
+        const x = i * scaleX;
+        ctx.moveTo(x, canvas.height - 3); // (3) tamanho da linha do eixo
+        ctx.lineTo(x, canvas.height + 5);
+        ctx.fillText(i, 0, canvas.height + 0);
+    }
+
+    // EIXO Y
+    for (let i = 50; i <= 450; i += 50) { // marcações que aparecem no eixo y
+        const y = canvas.height - i * scaleY;
+        ctx.moveTo(3, y); // (3) tamanho da linha do eixo
+        ctx.lineTo(-30, y);
+        ctx.fillText(i, 0, y + 0);
+    }
+
+    ctx.fillText('X', canvas.width - 50, canvas.height - 10);
+    ctx.fillText('Y', 10, 10);
+
+    ctx.stroke();
+
+    const rocketImage = new Image();
+    rocketImage.src = "https://cdn-icons-png.flaticon.com/512/1356/1356479.png"; // img do foguete
+
+    rocketImage.onload = function() {
+        drawProjectile(0);
+    };
+
+    function drawProjectile(t) {
+        const x = vx0 * t * scaleX;
+        const y = (vy0 * t - (0.5 * g * t * t)) * scaleY;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawAxes();
+
+        const rocketWidth = 30; // largura da img do foguete
+        const rocketHeight = 30; // altura da img do foguete 
+        ctx.drawImage(rocketImage, x, canvas.height - y - rocketHeight, rocketWidth, rocketHeight);
+
+        ctx.lineTo(x, canvas.height - y);
+        ctx.stroke();
+
+        // valores instantâneos
+        const instantValues = `
+        <ul id="lista-valores" style="list-style-type: none; font-size: 22px;">
+            <li>Vx: ${vx0.toFixed(2)} m/s</li>
+            <li>Vy: ${(vy0 - g * t).toFixed(2)} m/s</li>
+            <li>G: ${g} m/s²</li>
+            <li>T: ${t.toFixed(2)} s</li>
+            <li>Y: ${(vy0 * t - 0.5 * g * t * t).toFixed(2)} m</li>
+            <li>X: ${x.toFixed(2)} m</li>
+        </ul>
+        `;
+
+        document.getElementById("values").innerHTML = instantValues;
+
+        if (t < tTotal) {
+            requestAnimationFrame(() => drawProjectile(t + 0.05)); // velocidade do desenho no gráfico
+        }
+    }
+
+    function drawAxes() { // codigo que faz o desenho acontecer no eixo x e y
+    }
+
+    // formula do alcance
+    const range = vx0 * tTotal;
+    document.getElementById("range").textContent = range.toFixed(2);
+
+    // formula da altura maxima
+    const maxHeight = (vy0 * vy0) / (2 * g);
+    document.getElementById("maxHeight").textContent = maxHeight.toFixed(2);
+
+    // formula do comprimento da trajetoria 
+    const trajectoryLength = Math.sqrt(range ** 2 + maxHeight ** 2);
+    document.getElementById("trajectoryLength").textContent = trajectoryLength.toFixed(2);
+}
+
+    </script>
+<!-- MEIO fim -->
+
+<!-- FIM início -->
+<footer></footer>
+<!-- FIM fim -->
+</body>
+</html>
