@@ -11,10 +11,10 @@
         --- APRESENTADO EM: XI ENCONTRO REGIONAL DE ENGENHARIA (ENCOENG)
         --- TURMA: ENGENHARIA DE COMPUTAÇÃO - 2º PERÍODO
         --- DESENVOLVEDORES:
-        -> JAVASCRIPT - HTML - CSS: @arlesonjunior 
+        -> JAVASCRIPT - HTML - CSS - HOSPEDAGEM: @arlesonjunior 
         -> JAVASCRIPT: @aileraron 
-        -> JAVASCRIPT: @ryansantos 
-        -> JAVASCRIPT: @luizfernando 
+        -> JAVASCRIPT - HOSPEDAGEM: @ryansantos 
+        -> HTML - HOSPEDAGEM: @luizfernando 
         --- Copyright©2023 ---
         */
         *{
@@ -25,6 +25,23 @@
         body {
             background: #fff;
             font-family: Arial, sans-serif;
+        }
+        a {
+            color: #fff;
+            text-decoration: none; 
+        }
+
+        a:hover {
+            color: #5be9b9;
+            -webkit-transition: all 0.3s linear;
+            -webkit-transition: all 0.3s linear;
+            -moz-transition: all 0.3s linear;
+            -o-transition: all 0.3s linear;
+            transition: all 0.3s linear;
+        }
+
+        a:visited {
+            color: #fff;
         }
         #plano-cartesiano-img{
             border-radius: 10px;
@@ -45,67 +62,71 @@
             font-family: 'Comfortaa', sans-serif;
             font-size: 36px;
             font-weight: bold;
-            text-shadow:1px 1px #222;
+            text-shadow:2px 1px #222;
         }
         .t2{
-            width: 800px;
-            color:#000; 
-            font-family: 'verdana', sans-serif;
-            font-size: 18px;
-            text-align: justify;
-            
-        } 
-        .t3{
-            color:#fff; 
-            font-family: 'Comfortaa', sans-serif;
-            font-size: 25px;
-            font-weight: bold;
-            text-shadow:1px 1px #ccc;
-        }
-        .t4{
             width: 800px;
             color:#fff; 
             font-family: 'verdana', sans-serif;
             font-size: 17px;
             text-align: justify;
+            padding-top: 8px;
+            
+        } 
+        .t3{
+            width: 800px;
+            color:#fff; 
+            font-family: 'Comfortaa', sans-serif;
+            font-size: 17px;
             
         } 
         #barral1{
             background:#6e07f3 repeat-x;
+            border-bottom: 3px solid #4700a3;
             width:100%;
-            height:400px;
+            height:300px;
             margin-top:0px;
             left:0;right:0;
             z-index:9999;
         }
+        #barral-footer{
+            background:#141c3a repeat-x;
+            width:100%;
+            height:135px;
+            margin-top:0px;
+            left:0;right:0;
+            z-index:9999;
+            position: relative;
+            bottom: 0;
+        }
         #box-calculadora{
             background:#fff;
             border-radius: 20px;
-            border: 2px #e6ecf6 solid;
+            border: 2px #4700a3 solid;
             margin-top: -130px;
-            width:1000px;
-            height:600px;
+            width:925px;
+            height:980px;
         }
         #box-esquerda{
-            background:#141c3a;
-            border-radius: 20px 0px 0px 20px;
+            background:#3e008e;
+            border-radius:20px;
             color: #fff;
             border: 2px #e6ecf6 solid;
-            margin-top: -450px;
-            margin-left: 100px;
+            margin-top: 5px;
+            margin-left: 35px;
             float: left;
-            width:354px;
+            width:365px;
             height:400px;
             padding: 15px;
         }
         #box-direita{
-            background:#141c3a;
-            border-radius: 0px 20px 20px 0px;
+            background:#3e008e;
+            border-radius:20px;
             border: 2px #e6ecf6 solid;
-            margin-top: -450px;
-            margin-right: 99px;
+            margin-top: 5px;
+            margin-right: 35px;
             float: right;
-            width:354px;
+            width:365px;
             height:400px;
             padding: 15px;
             color:#fff;
@@ -114,7 +135,8 @@
             background:#fff;
             border-radius: 15px;
             border: 2px #e6ecf6 solid;
-            width:320px;
+            font-size: 16px;
+            width:330px;
             height:35px;
         }
         .botao-calcular {
@@ -123,9 +145,9 @@
             text-align: center;
             text-decoration: none;
             cursor: pointer;
-            border: 2px solid #5be9b9;
-            color: #fff;
-            background: #141c3a;
+            border: 2px solid #111;
+            color: #FFF;
+            background: #111;
             border-radius: 20px;
             font-weight: bold;
         }
@@ -186,6 +208,25 @@
             list-style-type: none;
             word-spacing: 4px;
         }
+        .github-dev {
+            padding: 10px 20px;
+            font-size: 18px;
+            text-align: center;
+            text-decoration: none;
+            font-family: 'Comfortaa', sans-serif;
+            border: 2px solid #5be9b9;
+            color: #fff;
+            background: #141c3a;
+            border-radius: 20px;
+            width: 700px;
+            height: 45px;
+            font-weight: bold;
+        }
+        #github-icon {
+            background: url("https://1000logos.net/wp-content/uploads/2021/05/GitHub-logo.png");
+            width: 50px;
+            height: 50px;
+        }
     </style>
 </head>
 <body>
@@ -195,16 +236,10 @@
   <!-- CABEÇALHO fim -->
   <br><br>
   <!-- MEIO Início -->
-  <center><div class="t1">Lançamento de Projéteis - Uma Análise Computacional</div></center>
-  <br>
-  <center><div class="t2">O objetivo principal deste projeto é realizar uma análise computacional do lançamento de projéteis, aplicando conceitos fundamentais da disciplina de Física I. Ele visa aprimorar a compreensão dos conceitos teóricos por meio de uma abordagem prática e visual. O projeto oferece uma ferramenta interativa e educativa para explorar e compreender os princípios do lançamento de projéteis. Antes de apresentarmos a ferramenta, compartilhamos um breve overview do desenvolvimento do projeto e dos desafios enfrentados.</div></center>
-         <br>
-
+  <center><div class="t1">Lançamento de Projéteis - Uma Análise Computacional</div></center><br>
          <div id="barral1">
-            <br><br><br>
-            <center><div class="t3">O DESENVOLVIMENTO</div></center>
             <br>
-            <center><div class="t4">Os colaboradores encarregados da estrutura e implementação do projeto em programação conduziram uma consulta com o intuito de identificar a abordagem mais apropriada para abordar o desafio proposto pelo professor. Após uma análise detalhada, chegaram a um consenso de que a componente de cálculo deveria ser implementada utilizando JavaScript, enquanto a parte relacionada à interface web e modelagem seria desenvolvida por meio de HTML e CSS.</div></center>
+            <center><div class="t2">O objetivo principal deste projeto é realizar uma análise computacional do lançamento de projéteis, aplicando conceitos fundamentais da disciplina de Física I. Ele visa aprimorar a compreensão dos conceitos teóricos por meio de uma abordagem prática e visual. O projeto oferece uma ferramenta interativa e educativa para explorar e compreender os princípios do lançamento de projéteis. </div></center>
             <br>
             <!-- <center> <div id="box-perfil"></div></center> -->
         </div>
@@ -241,17 +276,15 @@
                 </ul>
             </div>
         </div>
-    </center>
-         <!-- BOX-ESQUERDO -->
-         <div id="box-esquerda">
-            <label for="velocity" style="font-size: 17px">Velocidade Inicial (m/s):</label>
+        <div id="box-esquerda">
+            <label for="velocity" style="font-size: 17px">Velocidade Inicial (m/s): (Limite: 90 m/s)</label>
             <br>
-            <div id="box-escrever"><input type="number" id="velocity" value="10" style="border: none; width: 300px; height: 32px;margin-left: 7px;"></div>
+            <div id="box-escrever"><input type="number" id="velocity" value="10" maxlength="90" style="border: none; width: 300px; height: 32px;margin-left: 7px;"></div>
             <br>
-            <label for="angle" style="font-size: 17px">Ângulo de Lançamento (graus):</label>
-            <div id="box-escrever"><input type="number" id="angle" value="45" style="border: none; width: 300px; height: 32px;margin-left: 7px;"></div>
+            <label for="angle" style="font-size: 17px">Ângulo de Lançamento (graus): <p>(Limite: 90°)</p></label>
+            <div id="box-escrever"><input type="number" id="angle" value="45" maxlength="90" style="border: none; width: 300px; height: 32px;margin-left: 7px;"></div>
             <br>
-            <div class="botao-calcular" onclick="calculateTrajectory()">Calcular</div>
+            <div class="botao-calcular" onclick="calculateTrajectory()">CALCULAR</div>
             <br>
             <div id="box-resultado">
                 <h2>Resultados:</h2>
@@ -265,7 +298,9 @@
             <h2>Valores Instantâneos:</h2>
             <div id="lista-valores2"><p id="values">Vx: 0 m/s<br>Vy: 0 m/s<br>G: -9.8 m/s²<br>T: 0 s<br>Y: 0 m<br>X: 0 m</p></div>
          </div>
-<br>
+        </div>
+    </center>
+         <br><br><br>
     <script>
       function calculateTrajectory() {
     const velocity = parseFloat(document.getElementById("velocity").value); // coloca a velocidade
@@ -329,8 +364,8 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawAxes();
 
-        const rocketWidth = 30; // largura da img do foguete
-        const rocketHeight = 30; // altura da img do foguete 
+        const rocketWidth = 20; // largura da img do foguete
+        const rocketHeight = 20; // altura da img do foguete 
         ctx.drawImage(rocketImage, x, canvas.height - y - rocketHeight, rocketWidth, rocketHeight);
 
         ctx.lineTo(x, canvas.height - y);
@@ -343,8 +378,8 @@
             <li>Vy: ${(vy0 - g * t).toFixed(2)} m/s</li>
             <li>G: ${g} m/s²</li>
             <li>T: ${t.toFixed(2)} s</li>
-            <li>Y: ${(vy0 * t - 0.5 * g * t * t).toFixed(2)} m</li>
-            <li>X: ${x.toFixed(2)} m</li>
+            <li>Y: ${(vy0 * t - (0.5 * g * t * t)).toFixed(2)} m</li>
+            <li>X: ${(vx0 * t).toFixed(2)} m</li>
         </ul>
         `;
 
@@ -373,9 +408,13 @@
 
     </script>
 <!-- MEIO fim -->
-
 <!-- FIM início -->
-<footer></footer>
+<footer>
+<div id="barral-footer">
+<center><br><div class="github-dev">GITHUB DOS DESENVOLVEDORES: <a href="https://github.com/arlesonjunior" target="_blank"">ARLESON</a> || <a href="https://github.com/ailer20" target="_blank"">AILER</a> || <a href="https://github.com/ryansnts" target="_blank"">RYAN</a> || <a href="https://github.com/LuizPitohui" target="_blank"">LUIZ</a></div></center>
+<center><div class="t3"><br><p>ENGENHARIA DE COMPUTAÇÃO</p>Copyright©2023</div></center>
+</div>
+</footer>
 <!-- FIM fim -->
 </body>
 </html>
